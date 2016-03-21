@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- CUSTOMIZE THIS! -->
+<title>Topic Modeling Tutorial</title>
+<meta name="author" content="Christof Schöch">
+<!-- END -->
+<meta name="description" content="Slides">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+<link rel="stylesheet" href="css/reveal.css">
+<link rel="stylesheet" href="css/theme/simple.css" id="theme">
+<!-- Code syntax highlighting -->
+<link rel="stylesheet" href="lib/css/zenburn.css">
+<!-- Printing and PDF exports -->
+<script>
+var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+document.getElementsByTagName( 'head' )[0].appendChild( link );
+</script>
+<!--[if lt IE 9]>
+<script src="lib/js/html5shiv.js"></script>
+<![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+<!-- THIS IS WHERE THE CONTENT GOES! -->
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+
+<section data-markdown>
+<script type="text/template">
+# Topic Modeling Tutorial
+<hr/>
+<br/>
+<p>Workshop Digitale Forschungsmethoden in der Romanistik</p>
+<p>Forum Junge Romanistik 2016, Universität Würzburg</p>
+<br/>
+<hr/>
+<p>Christof Schöch<br/>(CLiGS, Universität Würzburg)</p>
+<p><img height="50" data-src="img/basics/UWUE.jpg"></img>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img height="100" data-src="img/basics/CLiGS.jpg"></img>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img height="50" data-src="img/basics/BMBF.jpg"></img></p>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Überblick
+1. Theorie: Was ist Topic Modeling?
+2. Anwendung: Der Topic Modeling Workflow (tmw)
+3. Ergebnisse: Visualisierungen der Topics
+4. Ergebnisse: Visualisierungen der Verteilungen
+5. Weiterführendes
+</script>
+</section>
+
+<section>
+
+<section data-markdown>
+<script type="text/template">
+# 1. Was ist Topic Modeling?
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Topic Modeling
+Grundidee
+* Entdeckt Wörter, die immer wieder gemeinsam bzw. in ähnlichen Kontexten vorkommen (Topics)
+* Berechnet, wie wichtig jeder Topic in jedem Dokument ist
+* Wichtig: keinerlei explizites semantisches Wissen fließt ein
+Etwas technischer
+* Ein Topic ist eine Verteilung von Wahrscheinlichkeiten von Wörtern
+* Ein Dokument ist eine Verteilung von Wahrscheinlichkeiten von Topics
+</script>
+</section>
+
+
+<section data-markdown>
+<script type="text/template">
+## Wörter, Topics, Dokumente
+<p><img height="500" data-src="img/tm_blei.png"></img></p>
+<p>(David Blei, "Probabilistic Topic Models", 2012)</p>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Generativ, Iterativ
+<p><img height="500" data-src="img/tm_steyvers1.png"></img></p>
+<p>(Steyvers and Griffiths, "Probabilistic Topic Modeling", 2006)</p>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Generativ, Iterativ
+<p><img height="500" data-src="img/tm_steyvers2.png"></img></p>
+<p>(Steyvers and Griffiths, "Probabilistic Topic Modeling", 2006)</p>
+</script>
+</section>
+
+
+</section>
+<section>
+
+<section data-markdown>
+<script type="text/template">
+# 2. Anwendung: Topic Modeling Workflow</h2>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Preprocessing, Modeling, Postprocessing
+<img height="500" data-src="img/tm_tmw.png"></img>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Umsetzung: Mallet und Python
+* MALLET = Machine Learning for Language Toolkit, https://github.com/mimno/Mallet
+* Python = Programmiersprache, https://www.python.org/
+* tmw = Topic Modeling Workflow, https://github.com/cligs/tmw
+* tmw = modulare Funktionen + Konfigurationsdatei
+</script>
+</section>
+
+</section>
+<section>
+	
+<section data-markdown>
+<script type="text/template">
+# 3. Ergebnisse: Visualisierung der Topics
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Textsammlung: 840 frz. Romane
+<img height="500" data-src="img/textsammlung.png"></img>
+</script>
+</section>
+
+
+<section data-markdown>
+<script type="text/template">
+## Ein Topic als Wordcloud
+<img height="500" data-src="img/wordle_tp092x.png"></img>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Geld-Münze-Franc
+<img height="500" data-src="img/wordle_tp028x.png"></img>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Professor-Wissenschaft-Weiser
+<img height="500" data-src="img/wordle_tp011x.png"></img>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Verbrechen-Tod-Mord
+<img height="500" data-src="img/wordle_tp002x.png"></img>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Musik-Piano-Lied
+<img height="500" data-src="img/wordle_tp048x.png"></img>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Buch-Bibliothek-Seite
+<img height="500" data-src="img/wordle_tp041x.png"></img>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Auto-Straße-Fahrer
+<img height="500" data-src="img/wordle_tp061x.png"></img>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Tier-Tier-Löwe
+<img height="500" data-src="img/wordle_tp075x.png"></img>
+</script>
+</section>
+
+
+</section>
+<section>
+
+<section data-markdown>
+<script type="text/template">
+# 4. Ergebnisse: Visualisierung der Verteilungen</h2>
+</script>
+</section>
+
+
+<section data-markdown>
+<script type="text/template">
+## Topics/Untergattung-Heatmap
+<img height="500" data-src="img/topic-doc-matrix.png"></img>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Topics über die Jahrzehnte
+<img height="500" data-src="img/lineplot-3-227.png"></img>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Topics und Autoren: Einzeltopic
+<img height="500" data-src="img/tI_by-author-name-003.png"></img>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Topics und Autoren: Clustering
+<img height="500" data-src="img/item-clustering_author-name_cosine-weighted-mean-50topics.jpg"></img>
+</script>
+</section>
+
+
+<section data-markdown>
+<script type="text/template">
+## Textsammlung: 127 spanische Romane
+<img height="500" data-src="img/textsammlung_ES.png"></img>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Topic/Dokument-Matrix
+<img height="500" data-src="img/topic-genre-heatmap.png"></img>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Topic/Dokument-Matrix
+<img height="500" data-src="img/topics_fallend.png"></img>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Topic/Dokument-Matrix
+<img height="500" data-src="img/topics_ansteigend.png"></img>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Textverlauf und Untergattung
+<img height="500" data-src="img/textverlauf-untergattung.png"></img>
+</script>
+</section>
+
+</section>
+<section>
+
+<section data-markdown>
+<script type="text/template">
+# 5. Weiterführendes</h2>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Lektürehinweise: Theorie und Technik
+<small>
+* Blei, D. M. (2012). "Probabilistic topic models". In: _Communications of the ACM_, 55(4): 77–84. http://www.cs.princeton.edu/~blei/papers/Blei2012.pdf
+* Steyvers, M. and Griffiths, T. (2006). "Probabilistic Topic Models". In: Landauer, T. et al. (eds), _Latent Semantic Analysis: A Road to Meaning_. Laurence Erlbaum.
+* Weingart, S. (2012). "Topic Modeling for Humanists: A Guided Tour". In: _The Scottbot Irregular_. http://www.scottbot.net/HIAL/?p=19113
+
+</small>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Lektürehinweise: Anwendungsbeispiele
+<small>
+* Blevins, C. (2010). "Topic Modeling Martha Ballard’s Diary". In: _Historying_. http://historying.org/2010/04/01/topic-modeling-martha-ballards-diary/
+* Jockers, M. L. (2013). _Macroanalysis - Digital Methods and Literary History_. Champaign, IL: University of Illinois Press.
+* Rhody, L. M. (2012). "Topic Modeling and Figurative Language". In: _Journal of Digital Humanities_, 2(1) http://journalofdigitalhumanities.org/2-1/topic-modeling-and-figurative-language-by-lisa-m-rhody/
+* Schöch, C. (2016). "Topic Modeling Genre: An Exploration of French Classical and Enlightenment Drama". In: _Digital Humanities Quarterly_. http://digitalhumanities.org/dhq/
+* Underwood, T. and Goldstone, A. (2012)." "What can topic models of PMLA teach us about the history of literary scholarship?" In: _The Stone and the Shell_. http://tedunderwood.com/2012/12/14/what-can-topic-models-of-pmla-teach-us-about-the-history-of-literary-scholarship/
+</small>
+</script>
+</section>
+
+
+
+</section>
+
+
+<section data-markdown>
+<script type="text/template">
+<br/>
+<br/>
+<br/>
+<br/>
+<p>Autor: Christof Schöch, 2016</p>
+<p><a href="http://www.christof-schoech.de">christof-schoech.de</a>
+<hr/>
+<p>Lizenz: Creative Commons Attribution 4.0 International</p>
+<p><a href="https://creativecommons.org/licenses/by/4.0/">creativecommons.org/licenses/by/4.0/</a></p>
+</script>
+</section>
+
+
+
+<!-- DON'T TOUCH UNLESS YOU KNOW WHAT YOU'RE DOING :-) -->
+</div>
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+<script>
+// Full list of configuration options available at:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+	controls: true,
+	progress: true,
+	history: true,
+	center: true,
+	transition: 'slide', // none/fade/slide/convex/concave/zoom
+	// Optional reveal.js plugins
+	dependencies: [
+		{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+		{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+		{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+		{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+		{ src: 'plugin/zoom-js/zoom.js', async: true },
+		{ src: 'plugin/notes/notes.js', async: true }
+		]
+	});
+</script>
+</body>
+</html>
