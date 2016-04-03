@@ -1,4 +1,4 @@
 Topic Modeling-Tutorial
 =======================
 
-Kleine Einführung in einige Aspekte von Topic Modeling mit literarischen Texten.
+Short introduction to some aspects of topic modeling for literary texts.
