@@ -50,12 +50,17 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 <section data-markdown>
 <script type="text/template">
 ## Overview
-1. What is Topic Modeling?
-2. The Topic Modeling Workflow (tmw)
-3. Visualising Topics
-4. Visualising Topic Distributions
-5. Hands-on with Mallet
-6. Demo of tmw
+1. What is Topic Modeling? (theory)
+    * How does a topic model look like?
+    * How do we arrive at such a model?
+2. Visualising Topics
+    * Individual topics
+    * Topic distributions 
+3. Doing Topic Modeling (hands-on)
+    * Fundamentals 
+    * The details
+    * Practice
+    * Using tmw
 </script>
 </section>
 
@@ -72,31 +77,17 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 ## Topic Modeling: basic idea
 * Works on the basis of (large) collections of documents <!-- .element: class="fragment" data-fragment-index="1" -->
 * The purpose is to discover thematic trends and patterns <!-- .element: class="fragment" data-fragment-index="2" -->
-* No semantic knowledge goes into building the model <!-- .element: class="fragment" data-fragment-index="3" -->
-* Based on hypotheses from distributional semantics: "You shall know a word from the company it has" (Firth 1957) <!-- .element: class="fragment" data-fragment-index="4" -->
+* Each document is understood as a mixture of topics <!-- .element: class="fragment" data-fragment-index="4" -->
+class="fragment" data-fragment-index="4" -->
 </script>
 </section>
+
 
 <section data-markdown>
 <script type="text/template">
-## Topic Modeling: some more points
-* Discovers words which frequently occur together or in similar contexts (=topics) <!-- .element: class="fragment" data-fragment-index="1" -->
-* Calculates how important each word is in each topic <!-- .element: class="fragment" data-fragment-index="2" -->
-* Calculates how important each topic is in each document <!-- .element: class="fragment" data-fragment-index="3" -->
-* Each document is a mixture of topics <!-- .element: class="fragment" data-fragment-index="4" -->
+# (a) How does a topic model look like?
 </script>
 </section>
-
-<section data-markdown>
-<script type="text/template">
-## Topic Modeling: even more points
-* Topic modeling follows the "bag-of-words"-model: word order is irrelevant <!-- .element: class="fragment" data-fragment-index="1" -->
-* Topic modeling operates on a word-document co-occurrence matrix <!-- .element: class="fragment" data-fragment-index="2" -->
-* Technically speaking, a topic is a probability distribution over words <!-- .element: class="fragment" data-fragment-index="3" -->
-* A document is a probability distribution over topics <!-- .element: class="fragment" data-fragment-index="4" -->
-</script>
-</section>
-
 
 <section data-markdown>
 <script type="text/template">
@@ -106,21 +97,11 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 </script>
 </section>
 
-
 <section data-markdown>
 <script type="text/template">
 ## The model: documents
 <p><img height="400" data-src="img/docs-and-topics-in-rank.png"></img></p>
 <p>(Each topic has a score in each document; shown by rank)
-</script>
-</section>
-
-
-<section data-markdown>
-<script type="text/template">
-## The model: overview
-<p><img height="400" data-src="img/topic-score-words-in-rank.png"></img></p>
-<p>(Each topic has a collection-wide score and top-words)
 </script>
 </section>
 
@@ -131,6 +112,44 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 <p>(David Blei, "Probabilistic Topic Models", 2012)</p>
 </script>
 </section>
+
+<section data-markdown>
+<script type="text/template">
+## On a technical level
+* A topic model is an abstract representation of topics and documents
+* A topic is a probability distribution over words <!-- .element: class="fragment" data-fragment-index="3" -->
+* A document is a probability distribution over topics <!-- .element: class="fragment" data-fragment-index="4" -->
+</script>
+</section>
+
+<!--
+<section data-markdown>
+<script type="text/template">
+## The model: overview
+<p><img height="400" data-src="img/topic-score-words-in-rank.png"></img></p>
+<p>(Each topic has a collection-wide score and top-words)
+</script>
+</section>
+-->
+
+<section data-markdown>
+<script type="text/template">
+## (b) How do we arrive at a topic model?
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Some relevant ideas
+* Topic modeling follows the "bag-of-words"-model: word order is irrelevant <!-- .element: class="fragment" data-fragment-index="1" -->
+* No semantic knowledge goes into building the model <!-- .element: class="fragment" data-fragment-index="2" -->
+* Based on hypotheses from distributional semantics: "You shall know a word from the company it has" (Firth 1957) <!-- .element: class="fragment" data-fragment-index="2" -->
+* Discovers words which frequently occur together or in similar contexts (=topics)  <!-- .element: class="fragment" data-fragment-index="3" -->
+* Calculates how important each word is in each topic <!-- .element: class="fragment" data-fragment-index="4" -->
+* Calculates how important each topic is in each document <!-- .element: class="fragment" data-fragment-index="5" -->
+</script>
+</section>
+
 
 <section data-markdown>
 <script type="text/template">
@@ -146,15 +165,6 @@ generating a collection of documents."
 <p>(Steyvers and Griffiths, "Probabilistic Topic Modeling", 2006)</p>
 </script>
 </section>
-
-<section data-markdown>
-<script type="text/template">
-## Topic Modeling as 'reverse engineering'
-* Example from software development: Analyse a piece of proprietary software, discover how its (hidden) code-base is structured, and implement an open-source clone with similar functionality as the original  <!-- .element: class="fragment" data-fragment-index="1" -->
-* By analogy: By analysing a collection of documents, discouver its (latent) thematic structure and based on this, engineer a model that can generate documents with the same themes    <!-- .element: class="fragment" data-fragment-index="2" -->
-</script>
-</section>
-
 
 <section data-markdown>
 <script type="text/template">
@@ -174,7 +184,15 @@ generating a collection of documents."
 
 <section data-markdown>
 <script type="text/template">
-## The iterative process (by analogy)
+## Topic Modeling as 'reverse engineering'
+* **Example from software development**: Analyse a piece of proprietary software, discover how its (hidden) code-base is structured, and implement an open-source clone with similar functionality as the original  <!-- .element: class="fragment" data-fragment-index="1" -->
+* **By analogy**: By analysing a collection of documents, discouver its (latent) thematic structure and based on this, engineer a model that can generate documents with the same themes    <!-- .element: class="fragment" data-fragment-index="2" -->
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## The iterative process
 * We have the documents with their words
 * We are looking for the word distributions per topic and the topic distributions per document
 </script>
@@ -183,7 +201,7 @@ generating a collection of documents."
 
 <section data-markdown>
 <script type="text/template">
-## The iterative process (by analogy)
+## The iterative process
 * Initially starting from a random distribution, the modeling process generates documents
 * For each document:
     * Each word in the document is generated by sampling a topic from the topic distribution of that document, then sampling a word from the word distribution of that topic.
@@ -194,40 +212,50 @@ generating a collection of documents."
 </section>
 
 
+<section data-markdown>
+<script type="text/template">
+## How it works exactly, clearly explained
+<p><img height="500" data-src="img/sharris_more-explicit-in-step-two.jpg"></img></p>  <!-- .element: class="fragment" data-fragment-index="1" -->
+</script>
+</section>
+
+
+
+
+<section data-markdown>
+<script type="text/template">
+## Topic modeling: plate notation
+<p><img height="500" data-src="img/steyvers_topic-modeling-plate-notation.png"></img></p>
+<p>(Steyvers and Griffiths, "Probabilistic Topic Modeling", 2006)</p>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Topic modeling: plate notation
+<p><img height="500" data-src="img/steyvers_geometric-interpretation-of-the-topic-model.png"></img></p>
+<p>(Steyvers and Griffiths, "Probabilistic Topic Modeling", 2006)</p>
+</script>
+</section>
+
+
+
 </section>
 <section>
 
+
 <section data-markdown>
 <script type="text/template">
-# 2. Usage: Topic Modeling Workflow</h2>
+# 2. Results: Visualizing topics
 </script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## Preprocessing, Modeling, Postprocessing, Visualisation
-<img height="500" data-src="img/tm_tmw.png"></img>
+## 2.1 Individual Topics
 </script>
 </section>
 
-<section data-markdown>
-<script type="text/template">
-## Implementation: Mallet and Python
-* MALLET = Machine Learning for Language Toolkit, https://github.com/mimno/Mallet
-* Python = Programming Language, https://www.python.org/
-* tmw = Topic Modeling Workflow, https://github.com/cligs/tmw
-* tmw = modular functions + configuration file
-</script>
-</section>
-
-</section>
-<section>
-	
-<section data-markdown>
-<script type="text/template">
-# 3. Results: Visualizing topics
-</script>
-</section>
 
 <section data-markdown>
 <script type="text/template">
@@ -293,16 +321,11 @@ generating a collection of documents."
 </script>
 </section>
 
-
-</section>
-<section>
-
 <section data-markdown>
 <script type="text/template">
-# 4. Results: Visualizing distributions</h2>
+## 2.1 Topic distributions</h2>
 </script>
 </section>
-
 
 <section data-markdown>
 <script type="text/template">
@@ -373,14 +396,14 @@ generating a collection of documents."
 
 <section data-markdown>
 <script type="text/template">
-# 5. Hands-on with Mallet
+# 3. Hands-on with Mallet
 </script>
 </section>
 
 
 <section data-markdown>
 <script type="text/template">
-## 5.1 Fundamentals
+## 3.1 Fundamentals
 </script>
 </section>
 
@@ -414,8 +437,8 @@ generating a collection of documents."
    * data/
        * docs-all/
        * segs-all/
-       * segs-nouns
-       * stopwords_en.txt
+       * segs-nouns/
+       * stopwords/
    * models/
        * docs-all/
        * segs-all/
@@ -427,18 +450,18 @@ generating a collection of documents."
 <script type="text/template">
 ## Calling Mallet: two steps
 * "import"
-    * Convert the text files into the Mallet corpus format
+    * Converts the text files into the Mallet corpus format
     * Writes a binary file
 * "train-topics"
-    * Perform the actual modeling on the corpus
-    * Write several tabular files
+    * Performs the actual modeling on the corpus
+    * Writes several tabular files
 </script>
 </section>
 
 
 <section data-markdown>
 <script type="text/template">
-## 5.2 The details
+## 3.2 The details
 </script>
 </section>
 
@@ -480,6 +503,17 @@ import-dir
 ```
 </script>
 </section>
+
+<section data-markdown>
+<script type="text/template">
+## Importing texts into Mallet (Windows)
+(on one line for copy-paste)
+```
+C:\\[...]\Mallet\bin\mallet import-dir --input C:\\[...]\krakow-mallet\data\docs-all  --output C:\\[...]\krakow-mallet\data\docs-all.mallet --keep-sequence  --token-regex '\p{L}[\p{L}\p{P}]*\p{L}' --remove-stopwords TRUE --stoplist-file C:\\[...]\krakow-mallet\data\stopwords\doyle_100.txt
+```
+</script>
+</section>
+
 
 
 <section data-markdown>
@@ -527,6 +561,17 @@ train-topics
 
 <section data-markdown>
 <script type="text/template">
+## (2) Build the topic model (Windows)
+(on one line for copy-paste)
+```
+C:\\[...]\Mallet\bin\mallet train-topics --input C:\\[...]\krakow-mallet\data\docs-all.mallet --num-topics 20 --optimize-interval 50 --num-iterations 500 --num-top-words 20 --output-topic-keys C:\\[...]\krakow-mallet\models\docs-all\topics-with-words.txt --output-doc-topics C:\\[...]\krakow-mallet\models\docs-all\topics-in-texts.txt --doc-topics-max 20
+```
+</script>
+</section>
+
+
+<section data-markdown>
+<script type="text/template">
 ## Inspecting the results
 * Open the `topics-with-words.txt` file with Notepad or Calc/Excel
 * Open the `topics-in-texts.txt` file with Notepad or Calc/Excel
@@ -536,7 +581,7 @@ train-topics
 
 <section data-markdown>
 <script type="text/template">
-## 5.3 Practice
+## 3.3 Practice
 </script>
 </section>
 
@@ -565,25 +610,40 @@ train-topics
 </section>
 
 
-
-</section>
-<section>
-
 <section data-markdown>
 <script type="text/template">
-# 6. Using tmw (demonstration)
+## 3.4. Using tmw (demonstration)
 </script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## twm does has four submodules
+## tmw
+<img height="500" data-src="img/tm_tmw_en.png"></img>
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## twm has four submodules
 * prepare: Preprocessing of the texts
 * model: run Mallet to train the model
 * postprocess: transform and enrich Mallet output
 * visualize: create graphical views of the data
 </script>
 </section>
+
+<section data-markdown>
+<script type="text/template">
+## tmw: Mallet and Python
+* MALLET = Machine Learning for Language Toolkit, https://github.com/mimno/Mallet
+* Python = Programming Language, https://www.python.org/
+* tmw = Topic Modeling Workflow, in Python https://github.com/cligs/tmw
+* tmw = modular functions + configuration file
+* tmw uses numpy, pandas, seaborn, matplotlib, wordcloud, lxml, subprocess, etc. 
+</script>
+</section>
+
 
 </section>
 <section>
