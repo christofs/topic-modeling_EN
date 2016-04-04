@@ -159,8 +159,8 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 * No semantic knowledge / dictionary / WordNet etc. is used; language-independent <!-- .element: class="fragment" data-fragment-index="2" -->
 * Based distributional semantics: "a word is characterized by the company it keeps" (John Firth 1957) <!-- .element: class="fragment" data-fragment-index="3" -->
 * Discovers words which frequently occur together or in similar contexts (=topics)  <!-- .element: class="fragment" data-fragment-index="4" -->
-* Calculates how important each word is in each topic <!-- .element: class="fragment" data-fragment-index="5" -->
-* Calculates how important each topic is in each document <!-- .element: class="fragment" data-fragment-index="6" -->
+* Infers how important each word is in each topic <!-- .element: class="fragment" data-fragment-index="5" -->
+* Infers how important each topic is in each document <!-- .element: class="fragment" data-fragment-index="6" -->
 </script>
 </section>
 
@@ -211,6 +211,8 @@ generating a collection of documents."
 <script type="text/template">
 ## Words, Topics, Documents
 >"The computational problem of inferring the hidden topic structure from the documents is the problem of computing the posterior distribution, the conditional distribution of the hidden variables given the documents."
+
+<br/>
 <p>(David Blei, "Probabilistic Topic Models", 2012)</p>
 </script>
 </section>
@@ -221,7 +223,7 @@ generating a collection of documents."
 <section data-markdown>
 <script type="text/template">
 ## The process of LDA: starting point
-* We have the documents with their words  <!-- .element: class="fragment" data-fragment-index="1" -->
+* We have the documents with their words (e.g. as a word/document frequency matrix)  <!-- .element: class="fragment" data-fragment-index="1" -->
 * We are looking for the word distributions per topic and the topic distributions per document   <!-- .element: class="fragment" data-fragment-index="2" -->
 * Both distributions are dependent on each other (if a topic changes, the topic distributions change)  <!-- .element: class="fragment" data-fragment-index="3" -->
 * And both distributions need to fit with the original documents  <!-- .element: class="fragment" data-fragment-index="4" -->
@@ -261,17 +263,17 @@ generating a collection of documents."
 <section data-markdown>
 <script type="text/template">
 ## The process of LDA: sampling
-* Now we have: <!-- .element: class="fragment" data-fragment-index="1" -->
+* We have: <!-- .element: class="fragment" data-fragment-index="1" -->
     * the observed words in each document <!-- .element: class="fragment" data-fragment-index="1" -->
     * the words in each randomly generated document <!-- .element: class="fragment" data-fragment-index="1" -->
     * the (random) words-in-topics distribution <!-- .element: class="fragment" data-fragment-index="1" -->
     * the (random) topics-in-documents distribution <!-- .element: class="fragment" data-fragment-index="1" -->
 * Now we can model all these three together as a "joint distribution"... <!-- .element: class="fragment" data-fragment-index="2" -->
-* Iteratively (Gibbs sampling): <!-- .element: class="fragment" data-fragment-index="3" -->
-    * Draw samples from the generated documents <!-- .element: class="fragment" data-fragment-index="4" -->
+* Iteratively (e.g. Gibbs sampling): <!-- .element: class="fragment" data-fragment-index="3" -->
+    * Generate documents <!-- .element: class="fragment" data-fragment-index="4" -->
     * Compare with the real documents <!-- .element: class="fragment" data-fragment-index="5" -->
-    * Optimize the distribitions / latent variables for a better fit between samples and real documents <!-- .element: class="fragment" data-fragment-index="6" -->
-* Do this until there is a sufficiently good approximation<!-- .element: class="fragment" data-fragment-index="7" -->
+    * Optimize the distributions / latent variables <!-- .element: class="fragment" data-fragment-index="6" -->
+* Do this until there is a sufficiently good approximation <!-- .element: class="fragment" data-fragment-index="7" -->
 </script>
 </section>
 
@@ -308,8 +310,8 @@ generating a collection of documents."
 * D = number of documents (given)
 * T = number of topics (set by researcher)
 * Nd = number of words in document d
-* α (alpha): Dirichlet prior (hyperparameter)
-* β (beta): Dirichlet prior (hyperparameter)
+* α (alpha): Dirichlet prior (hyperparameter: sparse / smooth distribution of topics)
+* β (beta): Dirichlet prior (hyperparameter: sparse / smooth distribution of words)
 * θ (theta): distribution over topics (for each document; latent variable)
 * ϕ (phi): distribution over words (for each topic; latent variable) 
 * z = assignment of words to topics (latent variable)
