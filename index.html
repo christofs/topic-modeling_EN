@@ -80,7 +80,8 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 ## Topic Modeling: basic idea
 * Works on the basis of (large) collections of documents <!-- .element: class="fragment" data-fragment-index="1" -->
 * The purpose is to discover thematic trends and patterns <!-- .element: class="fragment" data-fragment-index="2" -->
-* Each document is understood as a mixture of topics <!-- .element: class="fragment" data-fragment-index="4" -->
+* Each document is understood as a mixture of topics <!-- .element: class="fragment" data-fragment-index="3" -->
+* Discovered through generative probabilistic modeling <!-- .element: class="fragment" data-fragment-index="4" -->
 </script>
 </section>
 
@@ -205,6 +206,18 @@ generating a collection of documents."
 </script>
 </section>
 
+
+<section data-markdown>
+<script type="text/template">
+## Words, Topics, Documents
+>"The computational problem of inferring the hidden topic structure from the documents is the problem of computing the posterior distribution, the conditional distribution of the hidden variables given the documents."
+<p>(David Blei, "Probabilistic Topic Models", 2012)</p>
+</script>
+</section>
+
+
+
+
 <section data-markdown>
 <script type="text/template">
 ## The process of LDA: starting point
@@ -218,7 +231,7 @@ generating a collection of documents."
 
 <section data-markdown>
 <script type="text/template">
-## The process of LDA: end point
+## The process of LDA: generative
 * For each topic:  <!-- .element: class="fragment" data-fragment-index="1" -->
     * There is a distribution over words <!-- .element: class="fragment" data-fragment-index="2" -->
 * For each document:  <!-- .element: class="fragment" data-fragment-index="3" -->
@@ -238,24 +251,27 @@ generating a collection of documents."
 * For each document:  <!-- .element: class="fragment" data-fragment-index="3" -->
     * Generate a random distribution over topics <!-- .element: class="fragment" data-fragment-index="4" -->
     * For each word in the document:  <!-- .element: class="fragment" data-fragment-index="5" -->
-        * Choose the word by sampling a word from the word distribution of that topic. <!-- .element: class="fragment" data-fragment-index="6" -->
-        * Once all words are chosen, the document is finished <!-- .element: class="fragment" data-fragment-index="7" -->
-* (Now we have random topic and document distributions; they don't match the real documents) <!-- .element: class="fragment" data-fragment-index="8" -->
+        * Choose a topic from the topic distribution <!-- .element: class="fragment" data-fragment-index="6" -->
+        * Choose a word by sampling from the word distribution of that topic. <!-- .element: class="fragment" data-fragment-index="7" -->
+        * Once all words are chosen, the document is finished <!-- .element: class="fragment" data-fragment-index="8" -->
+* (Now we have random topic and document distributions; they don't match the real documents) <!-- .element: class="fragment" data-fragment-index="9" -->
 </script>
 </section>
 
 <section data-markdown>
 <script type="text/template">
-## The process of LDA: probabilistic
+## The process of LDA: sampling
 * Now we have: <!-- .element: class="fragment" data-fragment-index="1" -->
     * the observed words in each document <!-- .element: class="fragment" data-fragment-index="1" -->
     * the words in each randomly generated document <!-- .element: class="fragment" data-fragment-index="1" -->
     * the (random) words-in-topics distribution <!-- .element: class="fragment" data-fragment-index="1" -->
     * the (random) topics-in-documents distribution <!-- .element: class="fragment" data-fragment-index="1" -->
 * Now we can model all these three together as a "joint distribution"... <!-- .element: class="fragment" data-fragment-index="2" -->
-    * draw samples from the observed documents (Gibbs sampling) <!-- .element: class="fragment" data-fragment-index="3" -->
-    * optimize the latent variables so that they best fit the sample <!-- .element: class="fragment" data-fragment-index="4" -->
-    * Ultimately, optimize the latent variables so that they fit the documents <!-- .element: class="fragment" data-fragment-index="5" -->
+* Iteratively (Gibbs sampling): <!-- .element: class="fragment" data-fragment-index="3" -->
+    * Draw samples from the generated documents <!-- .element: class="fragment" data-fragment-index="4" -->
+    * Compare with the real documents <!-- .element: class="fragment" data-fragment-index="5" -->
+    * Optimize the distribitions / latent variables for a better fit between samples and real documents <!-- .element: class="fragment" data-fragment-index="6" -->
+* Do this until there is a sufficiently good approximation<!-- .element: class="fragment" data-fragment-index="7" -->
 </script>
 </section>
 
