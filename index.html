@@ -561,16 +561,19 @@ generating a collection of documents."
 <section data-markdown>
 <script type="text/template">
 ## Folder structure
-* /krakow-mallet/ 
+* /krakow-mallet/
+   * archive/
    * data/
        * docs-all/
        * segs-all/
-       * segs-nouns/
+       * segs-n/
+       * segs-nv/
        * stopwords/
    * models/
        * docs-all/
        * segs-all/
-       * segs-nouns
+       * segs-n
+       * segs-nv
 </script>
 </section>
 
@@ -626,7 +629,7 @@ import-dir
 <script type="text/template">
 ## Importing texts into Mallet (Windows)
 ```
-C:\Programs\mallet207\bin\mallet 
+C:\Programs\mallet208\bin\mallet 
 import-dir 
 --input C:\Users\[USER]\Desktop\krakow-mallet\data\docs-all 
 --output C:\Users\[USER]\Desktop\krakow-mallet\data\docs-all.mallet 
@@ -676,7 +679,7 @@ train-topics
 <script type="text/template">
 ## (2) Build the topic model (Windows)
 ```
-C:\\[USER]\Programs\mallet207\bin\mallet 
+C:\\[USER]\Programs\mallet208\bin\mallet 
 train-topics 
 --input C:\\Users\[USER]\krakow-mallet\data\docs-all.mallet 
 --num-topics 20 
