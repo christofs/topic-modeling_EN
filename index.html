@@ -551,7 +551,8 @@ generating a collection of documents."
 <section data-markdown>
 <script type="text/template">
 ## Mallet: prerequisites
-* A working directory, with: 
+* Mallet 2.0.8 is installed (in `/home/[USER]/Programs/Mallet` on Linux or in `C:\Programs\Mallet` on Windows) 
+* A working directory (here: on the Desktop), with: 
    * An input data folder: texts in plain text, one file per text
    * Optionally: a plain text file with stopwords
    * Optionally: a dedicated output folder
@@ -612,6 +613,7 @@ generating a collection of documents."
 <section data-markdown>
 <script type="text/template">
 ## Importing texts into Mallet (Linux)
+(using the Terminal; from anywhere on the system)
 ```
 /home/[USER]/Programs/Mallet/bin/mallet 
 import-dir 
@@ -628,8 +630,9 @@ import-dir
 <section data-markdown>
 <script type="text/template">
 ## Importing texts into Mallet (Windows)
+(using the `cmd` Terminal; from `C:\Programs\mallet\`)
 ```
-C:\Programs\mallet208\bin\mallet 
+bin\mallet 
 import-dir 
 --input C:\Users\[USER]\Desktop\krakow-mallet\data\docs-all 
 --output C:\Users\[USER]\Desktop\krakow-mallet\data\docs-all.mallet 
@@ -663,7 +666,7 @@ import-dir
 ```
 /home/[USER]/Programs/Mallet/bin/mallet 
 train-topics  
---input /home/[USER]/krakow-mallet/data/docs-all.mallet 
+--input /home/[USER]/Desktop/krakow-mallet/data/docs-all.mallet 
 --num-topics 20 
 --optimize-interval 50 
 --num-iterations 500 
@@ -679,15 +682,15 @@ train-topics
 <script type="text/template">
 ## (2) Build the topic model (Windows)
 ```
-C:\\[USER]\Programs\mallet208\bin\mallet 
+bin\mallet 
 train-topics 
---input C:\\Users\[USER]\krakow-mallet\data\docs-all.mallet 
+--input C:\\Users\[USER]\Desktop\krakow-mallet\data\docs-all.mallet 
 --num-topics 20 
 --optimize-interval 50 
 --num-iterations 500 
 --num-top-words 20 
---output-topic-keys C:\\Users\[USER]\krakow-mallet\models\docs-all\topics-with-words.txt 
---output-doc-topics C:\\Users\[USER]\krakow-mallet\models\docs-all\topics-in-texts.txt 
+--output-topic-keys C:\\Users\[USER]\Desktop\krakow-mallet\models\docs-all\topics-with-words.txt 
+--output-doc-topics C:\\Users\[USER]\Desktop\krakow-mallet\models\docs-all\topics-in-texts.txt 
 --doc-topics-max 20
 ```
 </script>
@@ -696,8 +699,8 @@ train-topics
 <section data-markdown>
 <script type="text/template">
 ## Inspecting the results
-* Open the `topics-with-words.txt` file with Notepad++ or Calc/Excel (rename to CSV if necessary)
-* Open the `topics-in-texts.txt` file with Notepad++ or Calc/Excel (rename to CSV if necessary)
+* Open the `topics-with-words.txt` file with gedit or Notepad++ (or Calc/Excel; rename to CSV if necessary)
+* Open the `topics-in-texts.txt` file with gedit or Notepad++ (or Calc/Excel; rename to CSV if necessary)
 </script>
 </section>
 
